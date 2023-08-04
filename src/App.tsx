@@ -17,7 +17,6 @@ import routerBindings, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
 import dataProvider from "@refinedev/simple-rest";
-import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { AppIcon } from "./components/app-icon";
 import { Header } from "./components/header";
@@ -36,13 +35,6 @@ import {
 } from "./pages/categories";
 
 function App() {
-  const { t, i18n } = useTranslation();
-
-  const i18nProvider = {
-    translate: (key: string, params: object) => t(key, params),
-    changeLocale: (lang: string) => i18n.changeLanguage(lang),
-    getLocale: () => i18n.language,
-  };
 
   return (
     <BrowserRouter>
@@ -55,7 +47,6 @@ function App() {
             <Refine
               dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
               notificationProvider={notificationProvider}
-              i18nProvider={i18nProvider}
               routerProvider={routerBindings}
               resources={[
                 {
